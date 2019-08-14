@@ -12,6 +12,9 @@ pipeline {
 			string(	name: 'TEST_PROJECT_PATH',
 					defaultValue: "XUnitTestProject1/WebApiXUnitTest.csproj", 
 					description: '')
+			string(	name: 'DEPLOY_PROJECT_PATH',
+					defaultValue: "WebApplication2/Publish/WebApplication2.dll", 
+					description: '')
     }
 	
     stages {
@@ -24,6 +27,8 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'dotnet test ${TEST_PROJECT_PATH}' 
+		sh 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
+		    sh 'dotnet ${DEPLOY_PROJECT_PATH}'
             }
         }
     }
