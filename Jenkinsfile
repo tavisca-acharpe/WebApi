@@ -20,13 +20,13 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				powershell 'dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json'
-                powershell 'dotnet build  ${SOLUTION_FILE_PATH} -p:Configuration=release -v:n'
+				powershell 'dotnet restore WebApplication2/WebApi.csproj --source https://api.nuget.org/v3/index.json'
+                powershell 'dotnet build  WebApplication2/WebApi.csproj'
             }
         }
         stage('Test') {
             steps {
-                powershell 'dotnet test ${TEST_PROJECT_PATH}'
+                powershell 'dotnet test XUnitTestProject1/WebApiXUnitTest.csproj'
             }
         }
 	    
