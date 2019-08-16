@@ -20,8 +20,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				powershell 'dotnet restore WebApplication2/WebApi.csproj --source https://api.nuget.org/v3/index.json'
-                powershell 'dotnet build  WebApplication2/WebApi.csproj'
+				powershell '''dotnet restore WebApplication2/WebApi.sln'''
             }
         }
         stage('Test') {
