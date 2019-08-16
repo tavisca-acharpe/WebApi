@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				powershell '''dotnet restore WebApplication2/WebApi.sln'''
+				powershell '''dotnet restore WebApplication2.sln'''
             }
         }
         stage('Test') {
