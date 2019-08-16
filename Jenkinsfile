@@ -17,22 +17,22 @@ pipeline {
 					description: '')
     }
 	
-    stages {
+   stages {
         stage('Build') {
             steps {
-				bat '''dotnet restore WebApplication2.sln'''
+				sh 'dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json'
+                sh 'dotnet build  ${SOLUTION_FILE_PATH} -p:Configuration=release -v:q'
             }
         }
         stage('Test') {
             steps {
-                bat 'dotnet test XUnitTestProject1/WebApiXUnitTest.csproj'
+                sh 'dotnet test ${TEST_PROJECT_PATH}' 
             }
         }
-	    
-	      stage('Publish') {
+        stage('Deploy') {
             steps {
-		bat 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
-		  
+                sh 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish' 
+                sh 'dotnet ${DEPLOY_PROJECT_PATH}'
             }
         }
     }
