@@ -20,19 +20,19 @@ pipeline {
    stages {
         stage('Build') {
             steps {
-				sh 'dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json'
-                sh 'dotnet build  ${SOLUTION_FILE_PATH} -p:Configuration=release -v:q'
+				powershell 'dotnet restore ${SOLUTION_FILE_PATH} --source https://api.nuget.org/v3/index.json'
+                powershell 'dotnet build  ${SOLUTION_FILE_PATH} -p:Configuration=release -v:q'
             }
         }
         stage('Test') {
             steps {
-                sh 'dotnet test ${TEST_PROJECT_PATH}' 
+                powershell 'dotnet test ${TEST_PROJECT_PATH}' 
             }
         }
         stage('Deploy') {
             steps {
-                sh 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish' 
-                sh 'dotnet ${DEPLOY_PROJECT_PATH}'
+                powershell 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish' 
+               
             }
         }
     }
