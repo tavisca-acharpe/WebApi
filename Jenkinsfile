@@ -20,18 +20,18 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-				powershell '''dotnet restore WebApplication2.sln'''
+				bat '''dotnet restore WebApplication2.sln'''
             }
         }
         stage('Test') {
             steps {
-                powershell 'dotnet test XUnitTestProject1/WebApiXUnitTest.csproj'
+                bat 'dotnet test XUnitTestProject1/WebApiXUnitTest.csproj'
             }
         }
 	    
 	      stage('Publish') {
             steps {
-		powershell 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
+		bat 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
 		  
             }
         }
