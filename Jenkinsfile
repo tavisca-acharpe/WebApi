@@ -30,10 +30,10 @@ pipeline {
             }
         }
 	    
-	      stage('Deploy') {
+	      stage('Publish') {
             steps {
 		powershell 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
-		    powershell 'dotnet ${DEPLOY_PROJECT_PATH}'
+		  
             }
         }
     }
