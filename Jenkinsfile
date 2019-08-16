@@ -26,12 +26,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-               dotnet test ${TEST_PROJECT_PATH}
+               sh 'dotnet test ${TEST_PROJECT_PATH}'
             }
         }
         stage('Deploy') {
             steps {
-               dotnet publish ${SOLUTION_FILE_PATH} -o Publish
+               sh 'dotnet publish ${SOLUTION_FILE_PATH} -o Publish'
                
             }
         }
